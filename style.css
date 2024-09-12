@@ -1,0 +1,176 @@
+/* CSS Property Definitions */
+@property --gradient-color-1 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: #23232b;
+  }
+  @property --gradient-color-2 {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #5B86E5;
+  }
+  @property --gradient-rotate {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 45deg;
+  }
+  
+  /* CSS RESET */
+  
+  /* Box sizing rules */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  /* Prevent font size inflation */
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+  
+  /* Remove default margin in favour of better control in authored CSS */
+  body, h1, h2, h3, h4, p,
+  figure, blockquote, dl, dd {
+    margin: 0;
+  }
+  
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Set shorter line heights on headings and interactive elements */
+  h1, h2, h3, h4,
+  button, input, label {
+    line-height: 1.1;
+  }
+  
+  /* Balance text wrapping on headings */
+  h1, h2,
+  h3, h4 {
+    text-wrap: balance;
+  }
+  
+  /* Avoid orphans on paragraphs */
+  p {
+    text-wrap: pretty;
+  }
+  
+  /* Make links inherit colors */
+  a {
+    color: inherit;
+  }
+  
+  /* Make images easier to work with */
+  img,
+  picture {
+    max-width: 100%;
+    display: block;
+  }
+  
+  /* Inherit fonts for inputs and buttons */
+  input, button,
+  textarea, select {
+    font: inherit;
+  }
+  
+  /* Make sure textareas without a rows attribute are not tiny */
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+  
+  /* Anything that has been anchored to should have extra scroll margin */
+  :target {
+    scroll-margin-block: 5ex;
+  }
+  
+  body {
+    background-color: #666;
+  }
+  
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh; /* Changed from 100svh to 100vh */
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .card {
+    border-radius: 20px;
+    background-color: #fff;
+    overflow: hidden;
+    width: 200px;
+    max-width: 20rem;
+    height: 12rem;
+    transition: .5s;
+  }
+  
+  .img-wrapper {
+    width: 100%;
+    height: 10rem;
+    background: linear-gradient(45deg, #23232b, #5B86E5);
+    transition: --gradient-color-1 0.8s, --gradient-color-2 0.8s,--gradient-rotate 0.8s;
+    position: relative;
+  }
+  .img-wrapper::after{
+    content: ' ';
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 1.17rem;
+    right: 0;
+    width: 3.51rem;
+    height: 3.51rem;
+    background-color: transparent;
+    box-shadow: 1.755rem 1.755rem #ffffff;
+  }
+  .img-wrapper::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    background-color: #ffffff;
+    width: 100%;
+    height: 2.34rem;
+    bottom: -1.17rem;
+    border-radius: 1.17rem;
+  }
+  .card:hover{
+    height: 22rem;
+  }
+  .card:hover .img-wrapper {
+    background: linear-gradient(var(--gradient-rotate), var(--gradient-color-1), var(--gradient-color-2));
+    --gradient-color-1: #2ecee0;
+    --gradient-color-2: #5B86E5;
+    --gradient-rotate: 405deg;
+  }
+  .txt-wrapper{
+    padding: 0 1rem;
+  }
+  .txt-wrapper h3{
+    position: relative;
+  }
+  .txt-wrapper>*+*{
+    margin-top: 1rem;
+  }
+  
+  @media screen and (max-width: 40rem) {
+    .card-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+    }
+    .card{
+        max-width: 15rem;
+    }
+  }
+  
